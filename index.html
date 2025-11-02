@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Colb Fact Cards</title>
+<style>
+html,
+body {
+margin: 100px auto 0;
+height: 100%;
+background-color: #050100; /* unified color across all devices */
+font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+color: #e1c10afb;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-start;
+overflow-x: hidden;
+}
+
+/* Header section */
+header {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 15px;
+margin: 2rem 0 1rem 0;
+}
+
+header img {
+width: 70px;
+height: 70px;
+border-radius: 16px;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+header img:hover {
+transform: scale(1.05);
+box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+text-align: center;
+font-size: 2rem;
+font-weight: 600;
+margin: 0;
+color: #e1c10afb;
+}
+
+/* Card container */
+#cardContainer {
+display: flex;
+gap: 24px;
+overflow-x: auto;
+padding: 40px;
+width: 90%;
+max-width: 1000px;
+scroll-snap-type: x mandatory;
+justify-content: flex-start;
+align-items: center;
+scroll-padding: 40px;
+box-sizing: border-box;
+}
+
+#cardContainer::-webkit-scrollbar {
+height: 8px;
+}
+
+#cardContainer::-webkit-scrollbar-thumb {
+background: #e1c10afb;
+border-radius: 10px;
+}
+
+/* Card styles */
+.card {
+flex: 0 0 220px;
+height: 300px;
+perspective: 1000px;
+scroll-snap-align: center;
+border-radius: 16px;
+position: relative;
+cursor: pointer;
+transition: transform 0.4s ease;
+}
+
+.card:hover {
+transform: scale(1.05);
+}
+
+.cardInner {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+border-radius: 16px;
+transform-style: preserve-3d;
+transition: transform 0.8s;
+background: linear-gradient(145deg, #d6c7b2, #b6a48c);
+box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1),
+inset 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.card.flipped .cardInner {
+transform: rotateY(180deg);
+}
+
+.cardFront,
+.cardBack {
+position: absolute;
+width: 100%;
+height: 100%;
+backface-visibility: hidden;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 20px;
+box-sizing: border-box;
+border-radius: 16px;
+text-align: center;
+}
+
+.cardFront {
+background: linear-gradient(145deg, #e1c10afb, #e1c10afb);
+color: #020000;
+font-weight: 600;
+font-size: 1.2rem;
+letter-spacing: 0.5px;
+}
+
+.cardBack {
+background: #080100;
+color: #e1c10afb;
+font-size: 1rem;
+font-weight: 500;
+transform: rotateY(180deg);
+border: 1px solid #d8ccb7;
+}
+
+/* MOBILE VIEW */
+@media (max-width: 768px) {
+html,
+body {
+height: 100vh;
+overflow-y: hidden;
+background-color: #0b0201; /* same exact color as desktop */
+}
+
+header {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+background: #ffdad6; /* same tone */
+padding: 15px 0;
+margin: 0;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+z-index: 1000;
+}
+
+header img {
+width: 50px;
+height: 50px;
+}
+
+h1 {
+font-size: 1.4rem;
+color: #2e271a;
+}
+
+#cardContainer {
+position: absolute;
+top: 100px;
+left: 0;
+right: 0;
+bottom: 0;
+flex-direction: row;
+justify-content: flex-start;
+overflow-x: auto;
+overflow-y: hidden;
+scroll-padding: 30px;
+padding: 20px 30px;
+background-color: #ffdad6; /* unified tone with desktop */
+}
+
+.card {
+flex: 0 0 180px;
+height: 250px;
+}
+}
+</style>
+</head>
+<body>
+<header>
+<img src="colb.jpg" alt="Gensyn Logo" />
+<h1>Colb Fact Cards</h1>
+</header>
+
+<div id="cardContainer"></div>
+
+<script>
+const facts = [
+"Colb Asset SA is based in Geneva, Switzerland.",
+"Colb was founded (or at least operating) from 2020 onward, focused on bridging traditional finance with blockchain.",
+"The company specialises in tokenizing real-world assets (RWAs) making institutional-grade investments available via blockchain.",
+"Their stablecoin, originally named “USD Stable Colb ($SCB)”, was renamed to $USC (Colb USD) and is pegged at 1:1 to the USD.",
+"$USC is fully collateralised by cash and cash-equivalents (including U.S. Treasury bills) and is issued in compliance with Swiss law.",
+"The tokenisation framework used by Colb is called TKSP (“Tokenized Structured Product”), which allows non-custodial, on-chain ownership of premium/large-scale assets.",
+"Colb’s platform emphasizes non-custodial ownership of digital assets meaning users hold assets in their wallets rather than through intermediaries.",
+"Colb is a member of ARIF (Swiss self-regulatory organisation approved by FINMA) and acts as a financial intermediary under Swiss regulation.",
+"The reserve assets backing $USC are held in a bank account in Switzerland, in a legal trust structure designed to protect against bankruptcy or misuse.",
+"Colb has raised capital in seed/extension rounds; for example, an oversubscribed round of approx CHF 6 million (~USD 7.3 million) was announced to support infrastructure and asset tokenisation.",
+"Colb partners with other blockchain / DeFi infrastructure platforms; for example, the partnership with Moonbeam Foundation and the Moonbeam network to deploy $USC on its mainnet and support RWAs.",
+"Colb also partnered with Plume Network (or Plume) to bring tokenised pre-IPO equities on-chain expanding access to private market share certificates.",
+"The company’s tokenisation framework (TKSP) is flexible enough to accommodate multiple asset classes (funds, pre-IPO equity, institutional strategies), not just simple tokenised assets.",
+"Colb’s governance/utility token is called $COLB, which plays a role in secondary market infrastructure, aligning liquidity providers and investors.",
+"According to their whitepaper, the minting and burning of $USC are tied directly to fiat deposit and withdrawal flows, and the total supply of $USC should always be backed by the reserves held.",
+"The platform is designed with interoperability e.g., deployable on EVM-compatible chains and integrating with DeFi rails.",
+"Colb targets both “crypto natives” and traditional investors by offering access via wallet or email and aiming for global access.",
+"Their investment focus includes growth sectors, including infrastructure, energy, agribusiness and utilities sectors traditionally available only to institutional investors.",
+"The company emphasises transparency: the reserves and issuance/burning mechanisms are auditable, and the legal structure is made to isolate the trust’s assets from counterparty risk.",
+"Colb’s offering is currently available to qualified investors only and is not promoted to U.S. persons or in restricted regions (as per their regulatory disclosures)."
+];
+
+const container = document.getElementById("cardContainer");
+
+facts.forEach((fact, index) => {
+const card = document.createElement("div");
+card.classList.add("card");
+
+const inner = document.createElement("div");
+inner.classList.add("cardInner");
+
+const front = document.createElement("div");
+front.classList.add("cardFront");
+front.textContent = "Fact " + (index + 1);
+
+const back = document.createElement("div");
+back.classList.add("cardBack");
+back.textContent = fact;
+
+inner.appendChild(front);
+inner.appendChild(back);
+card.appendChild(inner);
+
+card.addEventListener("click", () => {
+card.classList.toggle("flipped");
+});
+
+container.appendChild(card);
+});
+
+function adjustPadding() {
+const firstCard = container.querySelector(".card");
+if (!firstCard) return;
+const cardWidth = firstCard.offsetWidth;
+const screenWidth = window.innerWidth;
+const sidePad = Math.max(40, (screenWidth - cardWidth) / 2);
+container.style.paddingLeft = `${sidePad}px`;
+container.style.paddingRight = `${sidePad}px`;
+}
+
+window.addEventListener("load", adjustPadding);
+window.addEventListener("resize", adjustPadding);
+</script>
+</body>
+</html>
