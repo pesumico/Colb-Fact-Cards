@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -139,13 +140,13 @@ transform: rotateY(180deg);
 border: 1px solid #d8ccb7;
 }
 
-/* MOBILE VIEW */
+/* MOBILE VIEW (now identical to desktop) */
 @media (max-width: 768px) {
 html,
 body {
 height: 100vh;
 overflow-y: hidden;
-background-color: #0b0201; /* same exact color as desktop */
+background-color: #050100; /* exact same color as desktop */
 }
 
 header {
@@ -153,10 +154,10 @@ position: fixed;
 top: 0;
 left: 0;
 width: 100%;
-background: #ffdad6; /* same tone */
+background: #050100; /* unified color */
 padding: 15px 0;
 margin: 0;
-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 z-index: 1000;
 }
 
@@ -167,7 +168,7 @@ height: 50px;
 
 h1 {
 font-size: 1.4rem;
-color: #2e271a;
+color: #e1c10afb;
 }
 
 #cardContainer {
@@ -182,19 +183,19 @@ overflow-x: auto;
 overflow-y: hidden;
 scroll-padding: 30px;
 padding: 20px 30px;
-background-color: #ffdad6; /* unified tone with desktop */
+background-color: #050100; /* unified tone with desktop */
 }
 
 .card {
 flex: 0 0 180px;
 height: 250px;
 }
-}
-</style>
+} </style>
+
 </head>
 <body>
 <header>
-<img src="colb.jpg" alt="Gensyn Logo" />
+<img src="colb.jpg" alt="Colb Logo" />
 <h1>Colb Fact Cards</h1>
 </header>
 
@@ -265,5 +266,6 @@ container.style.paddingRight = `${sidePad}px`;
 window.addEventListener("load", adjustPadding);
 window.addEventListener("resize", adjustPadding);
 </script>
+
 </body>
 </html>
